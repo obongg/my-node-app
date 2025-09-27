@@ -1,0 +1,15 @@
+---
+- name: Setup AWS Agent
+  hosts: aws-agent
+  become: yes
+  roles:
+    - install_node_nginx
+
+- name: Setup AWS App Server
+  hosts: aws-app
+  become: yes
+  roles:
+    - install_node_nginx
+    - install_mongodb
+    - deploy_app
+

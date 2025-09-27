@@ -1,0 +1,19 @@
+---
+- name: Install Node.js
+  yum:
+    name: nodejs
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Ensure Nginx is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
