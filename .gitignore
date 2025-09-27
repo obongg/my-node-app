@@ -1,0 +1,14 @@
+# macOS files
+.DS_Store
+__MACOSX/
+
+# Node modules (if any)
+node_modules/
+
+# Logs
+*.log
+
+# OS temp files
+*.swp
+*.swo
+
