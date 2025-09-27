@@ -1,22 +1,21 @@
----
-- name: Add MongoDB repo
-  yum_repository:
-    name: mongodb-org
-    description: MongoDB Repository
-    baseurl: https://repo.mongodb.org/yum/amazon/2/mongodb-org/5.0/x86_64/
-    gpgcheck: yes
-    gpgkey: https://www.mongodb.org/static/pgp/server-5.0.asc
-  when: ansible_os_family == "RedHat"
-
-- name: Install MongoDB
-  yum:
-    name: mongodb-org
+- name: Install Docker
+  ansible.builtin.dnf:
+    name: docker
     state: present
-  when: ansible_os_family == "RedHat"
 
-- name: Ensure MongoDB is running
-  service:
-    name: mongod
+- name: Start Docker service
+  ansible.builtin.service:
+    name: docker
     state: started
     enabled: yes
+
+- name: Run MongoDB container
+  community.docker.docker_container:
+    name: mongodb
+    image: mongo:6.0
+    state: started
+    restart_policy: always
+    ports:
+      - "27017:27017"
+
   

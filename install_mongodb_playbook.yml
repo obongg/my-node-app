@@ -1,0 +1,6 @@
+- name: Install MongoDB on Amazon Linux 2023
+  hosts: aws-app
+  become: yes
+  roles:
+    - install_mongodb
+
